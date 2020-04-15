@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""matrix size"""
+"matrix size"
+
+
 def matrix_shape(matrix):
     "returns the total size of all the list in a matrix"
     total = []
