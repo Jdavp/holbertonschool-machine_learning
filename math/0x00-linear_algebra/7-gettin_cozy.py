@@ -3,6 +3,7 @@
 
 
 def deepcopy(obj):
+    "deep copy of an object"
     if isinstance(obj, dict):
         return {deepcopy(key): deepcopy(value) for key, value in obj.items()}
     if hasattr(obj, '__iter__'):
