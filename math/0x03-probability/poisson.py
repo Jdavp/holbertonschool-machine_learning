@@ -36,7 +36,7 @@ class Poisson:
         'Calculates the value of the PMF for a given number'
 
         if type(k) is not int:
-            int(k)
+            k = int(k)
         if k < 0:
             return 0
         return (((self.lambtha ** k) / (self.factorial(k))) *
