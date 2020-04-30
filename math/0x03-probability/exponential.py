@@ -32,15 +32,12 @@ class Exponential:
         else:
             return n * self.factorial(n-1)
 
-    def pmf(self, k):
+    def pdf(self, x):
         'Calculates the value of the PMF for a given number'
 
-        if type(k) is not int:
-            k = int(k)
-        if k < 0:
+        if x < 0:
             return 0
-        return (((self.lambtha ** k) / (self.factorial(k))) *
-                (self.e ** -self.lambtha))
+        return self.lambtha * self.e ** -self.lambtha * x
 
     def cdf(self, k):
         'Calculates the value of the CDF for a given number'
