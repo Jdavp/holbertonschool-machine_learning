@@ -37,7 +37,7 @@ class Exponential:
 
         if x < 0:
             return 0
-        return self.lambtha * self.e ** -self.lambtha * x
+        return self.lambtha * self.e ** -(self.lambtha * x)
 
     def cdf(self, k):
         'Calculates the value of the CDF for a given number'
