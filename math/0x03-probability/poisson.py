@@ -5,10 +5,10 @@
 class Poisson:
     "represents a poisson distribution"
 
-    e = 2.7182818285
     def __init__(self, data=None, lambtha=1.):
         'Poisson contructor'
-        if lambtha < 0:
+
+        if lambtha <= 0:
             raise ValueError('lambtha must be a positive value')
         self.lambtha = float(lambtha)
         if data is None:
