@@ -32,6 +32,14 @@ class Normal:
             variance = (1/len(data)) * sigma
             self.stddev = (variance ** (1/2))
 
+    def z_score(self, x):
+        'Calculates the z-score of a given x-value'
+        return (x - self.mean) / self.stddev
+
+    def x_value(self, z):
+        'Calculates the x-value of a given z-score'
+        return self.mean + (z * self.stddev)
+
     def factorial(self, n):
         'factorial of a number'
         if n == 0:
