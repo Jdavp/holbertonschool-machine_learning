@@ -59,7 +59,7 @@ class Normal:
         'Calculates the value of the CDF for a given x value'
 
         x_func = ((x - self.mean)/(self.stddev * (2 ** (1/2))))
-        error_division = ((2 / (self.π * (1/2))))
+        error_division = ((2 / (self.π ** (1/2))))
         power_three = ((x_func ** 3)/3)
         power_five = ((x_func ** 5)/10)
         power_seven = ((x_func ** 7)/42)
