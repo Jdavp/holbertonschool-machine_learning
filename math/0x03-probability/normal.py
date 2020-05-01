@@ -48,11 +48,12 @@ class Normal:
             return n * self.factorial(n-1)
 
     def pdf(self, x):
-        'Calculates the value of the PMF for a given time period'
+        'Calculates the value of the PDF of a given x-value'
 
-        if x < 0:
-            return 0
-        return self.lambtha * self.e ** -(self.lambtha * x)
+        raiz = (((2 * ((self.π)*(self.stddev**2)))) ** (1/2))
+        potencia_1 = -((x - self.mean) ** 2)
+        potencia_2 = (2 * (self.stddev ** 2))
+        return ((1/raiz) * (self.e ** ((potencia_1) / potencia_2)))
 
     def cdf(self, x):
         'Calculates the value of the CDF for a given time period'
