@@ -56,8 +56,15 @@ class Normal:
         return ((1/raiz) * (self.e ** ((potencia_1) / potencia_2)))
 
     def cdf(self, x):
-        'Calculates the value of the CDF for a given time period'
+        'Calculates the value of the CDF for a given x value'
 
-        if x < 0:
-            return 0
-        return 1 - (self.e ** - (self.lambtha * x))
+        x_func = ((x - self.mean)/(self.stddev * (2 ** (1/2))))
+        error_division = ((2 / (self.π * (1/2))))
+        power_three = ((x_func ** 3)/3)
+        power_five = ((x_func ** 5)/10)
+        power_seven = ((x_func ** 7)/42)
+        power_nine = ((x_func ** 9)/216)
+        error_function = (error_division *
+                          (x_func - power_three +
+                           power_five - power_seven + power_nine))
+        return ((1/2) * (1 + error_function))
