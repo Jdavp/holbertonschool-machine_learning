@@ -35,6 +35,10 @@ class Neuron:
 
     def forward_prop(self, X):
         'Calculates the forward propagation of the neuron'
-        hidden_layer = np.matmul(self.__W, X)
-        self.__A = 1/(1+np.exp(-hidden_layer))
+        hidden_layer = np.matmul(self.__W, X) + self.__b
+        self.__A = self.sigmoid(hidden_layer)
         return self.__A
+
+    def sigmoid(self, z):
+        "Apply sigmoid activation function"
+        return 1/(1+np.exp(-z))
