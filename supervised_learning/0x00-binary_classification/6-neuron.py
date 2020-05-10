@@ -74,7 +74,7 @@ class Neuron:
         if iterations < 0:
             raise ValueError('iterations must be a positive integer')
         if type(alpha) is not float:
-            raise TypeError('alpha must be an float')
+            raise TypeError('alpha must be a float')
         if alpha < 0:
             raise ValueError('alpha must be positive')
         for it in range(iterations):
