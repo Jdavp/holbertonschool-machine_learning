@@ -14,7 +14,7 @@ class DeepNeuralNetwork:
         if nx <= 0:
             raise ValueError('nx must be a positive integer')
 
-        if type(layers) is not list:
+        if type(layers) is not list or len(layers) == 0:
             raise TypeError('layers must be a list of positive integers')
 
         if min(layers) <= 0:
@@ -24,7 +24,8 @@ class DeepNeuralNetwork:
         weight = {}
         count_l = nx
         for l in range(len(layers)):
-            if type(layers[l]) is not int:
+            if min(layers) <= 0:
+                'if type(layers[l]) is not int:'
                 raise ValueError('layers must be a list of positive integers')
             w_key = "W"+str(l + 1)
             weight[w_key] = np.random.randn(layers[l], count_l)*np.sqrt(2 / nx)
