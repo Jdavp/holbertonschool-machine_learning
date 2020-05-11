@@ -22,14 +22,15 @@ class DeepNeuralNetwork:
         self.L = len(layers)
         self.cache = {}
         weight = {}
-        count_l = nx
         for l in range(len(layers)):
             if min(layers) <= 0:
-                'if type(layers[l]) is not int:'
                 raise ValueError('layers must be a list of positive integers')
-            w_key = "W"+str(l + 1)
-            weight[w_key] = np.random.randn(layers[l], count_l)*np.sqrt(2 / nx)
-            b_key = "b"+str(l + 1)
+            w_key = 'W'+str(l + 1)
+            if layers == 0:
+                weight[w_key] = np.random.randn(layers[l], nx)*np.sqrt(2 / nx)
+            else:
+                weight[w_key] = np.random.randn(layers[l], layers[l-1]) *\
+                                np.sqrt(2 / layers[l-1])
+            b_key = 'b'+str(l + 1)
             weight[b_key] = np.zeros((layers[l], 1))
-            count_l = layers[l]
         self.weights = weight
