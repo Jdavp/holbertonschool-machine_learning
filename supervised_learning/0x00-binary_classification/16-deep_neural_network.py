@@ -17,13 +17,11 @@ class DeepNeuralNetwork:
         if type(layers) is not list or len(layers) == 0:
             raise TypeError('layers must be a list of positive integers')
 
-        if min(layers) <= 0:
-            raise TypeError('layers must be a list of positive integers')
         self.L = len(layers)
         self.cache = {}
         weight = {}
         for l in range(len(layers)):
-            if min(layers) <= 0:
+            if layers[l] < 1:
                 raise ValueError('layers must be a list of positive integers')
             w_key = 'W'+str(l + 1)
             if layers == 0:
