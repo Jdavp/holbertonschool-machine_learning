@@ -29,5 +29,5 @@ class DeepNeuralNetwork:
             else:
                 weights[w_key] = np.random.randn(layers[l], layers[l-1]) *\
                                 np.sqrt(2 / layers[l-1])
-            weights[b_key] = np.zeros((layers[l], 1))
+                weights[b_key] = np.zeros((layers[l], 1))
         self.weights = weights
