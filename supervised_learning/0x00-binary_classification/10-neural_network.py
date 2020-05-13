@@ -65,6 +65,6 @@ class NeuralNetwork:
         'Calculates the forward propagation of the neural network'
         z1 = np.matmul(self.__W1, X) + self.__b1
         self.__A1 = self.sigmoid(z1)
-        z2 = np.matmul(self.__W2, z1) + self.__b2
+        z2 = np.matmul(self.__W2, self.__A1) + self.__b2
         self.__A2 = self.sigmoid(z2)
         return self.__A1, self.__A2
