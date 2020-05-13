@@ -10,7 +10,10 @@ def one_hot_encode(Y, classes):
         return None
     if classes is None or Y is None:
         return None
-    encode = np.zeros((classes, len(Y)))
-    fila = np.arange(Y.shape[0])
-    encode[Y, fila] = 1
-    return encode
+    try:
+        encode = np.zeros((classes, len(Y)))
+        fila = np.arange(Y.shape[0])
+        encode[Y, fila] = 1
+        return encode
+    except Exception:
+        return None
