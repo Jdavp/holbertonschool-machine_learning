@@ -134,7 +134,7 @@ class DeepNeuralNetwork:
             plt.ylabel('cost')
             plt.plot(np.arange(0, iterations + 1), cost_list)
         return self.evaluate(X, Y)
-        
+
     def save(self, filename):
         'Saves the instance object to a file in pickle format'
         if filename[-3:] is not ".pkl":
