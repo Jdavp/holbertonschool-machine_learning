@@ -120,18 +120,10 @@ class DeepNeuralNetwork:
             if step < 0 or step > iterations:
                 raise ValueError('step must be positive and <= iterations')
         cost_list = []
-        for iteration in range(iterations):
+        for index, iteration in enumerate(range(iterations+1)):
             A, cache = self.forward_prop(X)
-            print('A')
-            print(A)
-            print('cache')
-            print(cache)
-            print('Y')
-            print(Y)
             self.gradient_descent(Y, cache, alpha)
             cost_list.append(self.cost(Y, A))
-            print('cost_list')
-            print(cost_list)
             if verbose is True and iteration % step == 0:
                 print("Cost after {} iterations: {}"
                       .format(iteration, cost_list[iteration]))
@@ -141,14 +133,12 @@ class DeepNeuralNetwork:
             plt.xlabel('iteration')
             plt.ylabel('cost')
             plt.plot(np.arange(0, iterations + 1), cost_list)
-            return self.evaluate(X, Y)
-
+        return self.evaluate(X, Y)
+        
     def save(self, filename):
         'Saves the instance object to a file in pickle format'
-        print(filename[-3:])
         if filename[-3:] is not ".pkl":
-            print(filename[-3:])
-            str(filename)+".pkl"
+            filename = str(filename)+".pkl"
         return pickle.dump(self, open(filename, "wb"))
 
     @staticmethod
