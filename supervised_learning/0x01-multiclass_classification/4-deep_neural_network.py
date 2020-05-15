@@ -8,7 +8,7 @@ import pickle
 class DeepNeuralNetwork:
     'deep neural network performing binary classification'
 
-    def __init__(self, nx, layers):
+    def __init__(self, nx, layers, activation='sig'):
         'class constructor'
 
         if type(nx) is not int:
@@ -17,8 +17,11 @@ class DeepNeuralNetwork:
             raise ValueError('nx must be a positive integer')
         if type(layers) is not list or len(layers) == 0:
             raise TypeError("layers must be a list of positive integers")
+        if activation is not "sig" or activation is not "tanh":
+            raise ValueError("activation must be 'sig' or 'tanh'")
         self.__L = len(layers)
         self.__cache = {}
+        self.__activation = activation
         weights = {}
         for la in range(len(layers)):
             if layers[la] < 1:
@@ -48,6 +51,11 @@ class DeepNeuralNetwork:
         'The number of layers in the neural network'
         return self.__L
 
+    @property
+    def activation(self):
+        "activation method"
+        return self.__activation
+
     def sigmoid(self, z):
         "Apply sigmoid activation function"
         return 1/(1+np.exp(-z))
@@ -56,6 +64,12 @@ class DeepNeuralNetwork:
         "apply softmax activation function"
         t = np.exp(z)
         return np.exp(z) / np.sum(t, axis=0, keepdims=True)
+    
+    def tanh(self, z):
+        "tanh activaction function"
+        return ((np.exp(z) - np.exp(-z)) / (
+                        np.exp(z) + np.exp(-z)))
+
 
     def forward_prop(self, X):
         'Calculates the forward propagation of the neural network'
@@ -68,7 +82,11 @@ class DeepNeuralNetwork:
             if layer == self.__L - 1:
                 actived = self.softmax(z)
             else:
-                actived = self.sigmoid(z)
+                if self.__activation == "sig":
+                    actived = self.sigmoid(z)
+                if self.__activation == "tanh":
+                    actived = self.tanh(z)
+
             self.__cache['A'+str(layer+1)] = actived
 
         return actived, self.__cache
@@ -97,7 +115,10 @@ class DeepNeuralNetwork:
                 dz = A - Y
                 W = self.__weights['W' + str(layer + 1)]
             else:
-                da = A * (1 - A)
+                if self.__activation == "sig":
+                    da = A * (1 - A)
+                if self.__activation == "tanh":
+                    da = 1 - (A * A)
                 dz = np.matmul(W.T, dz)
                 dz = dz * da
                 W = self.__weights['W' + str(layer + 1)]
