@@ -64,12 +64,11 @@ class DeepNeuralNetwork:
         "apply softmax activation function"
         t = np.exp(z)
         return np.exp(z) / np.sum(t, axis=0, keepdims=True)
-    
+
     def tanh(self, z):
         "tanh activaction function"
         return ((np.exp(z) - np.exp(-z)) / (
                         np.exp(z) + np.exp(-z)))
-
 
     def forward_prop(self, X):
         'Calculates the forward propagation of the neural network'
