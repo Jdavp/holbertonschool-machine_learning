@@ -137,7 +137,7 @@ class DeepNeuralNetwork:
 
     def save(self, filename):
         'Saves the instance object to a file in pickle format'
-        if ".pkl" != filename[-4:]:
+        if filename[-4:] != ".pkl":
             filename = str(filename)+".pkl"
         return pickle.dump(self, open(filename, "wb"))
 
