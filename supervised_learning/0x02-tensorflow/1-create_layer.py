@@ -12,8 +12,7 @@ def create_layer(prev, n, activation):
     each layer should be given the name layer
     Returns: the tensor output of the layer"""
 
-    layer = tf.layers.dense(
-        inputs=prev,
+    layer = tf.layers.Dense(
         units=n,
         activation=activation,
         kernel_initializer=tf.contrib.layers.variance_scaling_initializer(
@@ -21,4 +20,4 @@ def create_layer(prev, n, activation):
         name='layer',
     )
 
-    return layer
+    return layer(prev)
