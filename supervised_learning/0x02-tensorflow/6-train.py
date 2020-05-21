@@ -34,11 +34,11 @@ def train(X_train, Y_train, X_valid, Y_valid, layer_sizes, activations, alpha,
             valid_acc, valid_los = session.run([accuracy, loss],
                                                feed_dict=valid_dict)
             if iter % 100 == 0 or iter == iterations:
-                print("After "+str(iter)+" iterations:")
-                print("Training Cost: "+str(train_los))
-                print("Training Accuracy: "+str(train_acc))
-                print("Validation Cost: "+str(valid_los))
-                print("Validation Accuracy: "+str(valid_acc))
+                print("After {} iterations:".format(iter))
+                print("\tTraining Cost: {}".format(train_los))
+                print("\tTraining Accuracy: {}".format(train_acc))
+                print("\tValidation Cost: {}".format(valid_los))
+                print("\tValidation Accuracy: {}".format(valid_acc))
             if iter < iterations:
                 session.run(train_op, feed_dict=train_dict)
         return saver.save(session, save_path)
