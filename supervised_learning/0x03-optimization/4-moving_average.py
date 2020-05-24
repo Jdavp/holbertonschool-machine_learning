@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 'Moving Average'
-import tensorflow as tf
 
 
 def moving_average(data, beta):
