@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-'Mini-Batch '
-import numpy as np
+'Mini-Batch'
 import tensorflow as tf
 shuffle_data = __import__('2-shuffle_data').shuffle_data
 
