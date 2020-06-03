@@ -10,5 +10,6 @@ def optimize_model(network, alpha, beta1, beta2):
         beta_2=beta2,
         decay=alpha
     )
-    network.compile(loss="binary_crossentropy", optimizer=adam)
+    network.compile(loss="binary_crossentropy", optimizer=adam,
+                    metrics=["accuracy"])
     return None
