@@ -5,7 +5,7 @@ import tensorflow.keras as K
 
 def optimize_model(network, alpha, beta1, beta2):
     'Adam with categorical crossentropy loss and accuracy metrics'
-    adam = tf.keras.optimizers.Adam(
+    adam = K.optimizers.Adam(
         beta_1=beta1,
         beta_2=beta2,
         decay=alpha
