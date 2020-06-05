@@ -9,9 +9,9 @@ def train_model(network, data,
                 early_stopping=False, patience=0,
                 verbose=True, shuffle=False):
     'train the model using early stopping'
-    if validation_data is not None and early_stopping is True:
+    if validation_data and early_stopping:
         callbacks = [
-                    K.callbacks.EarlyStopping(patience=2, monitor='val_loss'),
+                    K.callbacks.EarlyStopping(patience=patience, monitor='val_loss'),
                 ]
         return network.fit(data, labels, batch_size=batch_size,
                            epochs=epochs, verbose=verbose,
