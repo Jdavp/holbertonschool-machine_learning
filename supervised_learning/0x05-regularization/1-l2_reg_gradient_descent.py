@@ -14,7 +14,7 @@ def l2_reg_gradient_descent(Y, weights, cache, alpha, lambtha, L):
             dz = A - Y
             W = weights['W' + str(layer + 1)]
         else:
-            da = A * (1 - A)
+            da = 1 - (A * A)
             dz = np.matmul(W.T, dz)
             dz = dz * da
             W = weights['W' + str(layer + 1)]
