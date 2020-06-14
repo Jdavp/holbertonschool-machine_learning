@@ -21,12 +21,11 @@ def conv_forward(A_prev, W, b, activation, padding="same", stride=(1, 1)):
     conv_w = (w_prev + 2 * pad_w - kw) // sw + 1
     convolved = np.zeros((m, conv_h, conv_w, c_new))
 
-    # In this notation row refers to height and col to width
-    for row in range(conv_h):
-        for col in range(conv_w):
+    for height in range(conv_h):
+        for width in range(conv_w):
             for ch in range(c_new):
-                slice_A = padded[:, row * sh:row * sh + kh, col * sw:col * sw
-                                 + kw]
+                slice_A = padded[:, height * sh:height * sh +
+                                 kh, width * sw:width * sw + kw]
                 slice_A_sum = np.sum(slice_A * W[:, :, :, ch], axis=(1, 2, 3))
-                convolved[:, row, col, ch] = slice_A_sum
+                convolved[:, height, width, ch] = slice_A_sum
     return activation(convolved + b)
